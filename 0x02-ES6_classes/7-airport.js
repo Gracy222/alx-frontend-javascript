@@ -2,7 +2,9 @@ export default class Airport {
   constructor(name, code) {
     if (typeof name !== 'string') {
       throw new TypeError('Name must be a string');
-    } else if (typeof code !== 'string') {
+    }
+
+    if (typeof code !== 'string') {
       throw new TypeError('Code must be a string');
     }
 
@@ -11,6 +13,6 @@ export default class Airport {
   }
 
   get [Symbol.toStringTag]() {
-    return `${this._code}`;
+    return this._code;
   }
 }
