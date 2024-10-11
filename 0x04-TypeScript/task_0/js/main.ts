@@ -1,48 +1,56 @@
 interface Student {
-	firstName: string;
-	lastName: string;
-	age: number;
-	location: string;
+    firstName: string;
+    lastName: string;
+    age: number;
+    location: string;
 }
 
 const student1: Student = {
-	firstName: "Blessing",
-	lastName: "Dawodu",
-	age: 27,
-	location: "Nigeria"
-};
+    firstName: 'Quint',
+    lastName: 'Talks',
+    age: 46,
+    location: 'Oodweyne'
+}
 
 const student2: Student = {
-        firstName: "John",
-        lastName: "Doe",
-        age: 37,
-        location: "Nairobi"
-};
+    firstName: 'Wanids',
+    lastName: 'Hovenden',
+    age: 21,
+    location: 'Kapunduk'
+}
 
-const studentsList: Student[] = [student1, student2];
+const studentsList: Student[] = [student1, student2]
 
-const table = document.createElement('table');
-const tbody = document.createElement('tbody');
+const studentTable = () => {
+    const table = document.createElement('table')
+    const thead = document.createElement('thead')
+    const theadRow = thead.insertRow()
+    const headerInfo = ['First Name', 'Location']
 
-table.style.background = "pink";
-table.appendChild(tbody);
+    for (let i = 0; i < headerInfo.length; i += 1) {
+        const th = document.createElement('th')
+        th.textContent = headerInfo[i]
+        theadRow.appendChild(th)
+    }
 
-studentsList.forEach((student: Student): void => {
-  const row = document.createElement('tr');
-  const nameCell = document.createElement('td');
-  const locationCell = document.createElement('td');
+    thead.appendChild(theadRow)
+    table.appendChild(thead)
 
-  nameCell.textContent = student.firstName;
-  locationCell.textContent = student.location;
+    const tbody = document.createElement('tbody')
 
-  nameCell.style.border = "1px solid pink";
-  locationCell.style.border = "1px solid pink";
-  nameCell.style.padding = "5px";
-  locationCell.style.padding = "5px";
+    studentsList.forEach((student) => {
+        const row = tbody.insertRow()
+        const nameCell = row.insertCell()
+        const locationCell = row.insertCell()
 
-  row.appendChild(nameCell);
-  row.appendChild(locationCell);
-  tbody.appendChild(row);
-});
+        nameCell.textContent = student.firstName
+        locationCell.textContent = student.location
 
-document.body.appendChild(table);
+        tbody.appendChild(row)
+    })
+
+    table.appendChild(tbody)
+    document.body.appendChild(table)
+}
+
+studentTable()
